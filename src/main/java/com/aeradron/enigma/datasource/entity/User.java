@@ -57,10 +57,6 @@ public class User{
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "address_key")
-    private Address address;
-
     @Column(name = "image_key")
     private UUID imageKey;
 
@@ -79,14 +75,6 @@ public class User{
     @Column(name = "designation")
     private String designation;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "interests_key")
-    private List<Interests> interests;
-
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "skills_key")
-    private List<Skills> skills;
-
     @Column(name = "work_experience")
     private Integer workExperience;
 
@@ -94,8 +82,8 @@ public class User{
     private Integer investmentsDone;
 
     public User(Long id, UUID uuid, String userType, String firstName, String lastName, String email, String password, String gender,
-                Date dateOfBirth, Address address, UUID imageKey, String phoneNumber, String profession, String about,
-                String company, String designation, List<Interests> interests, List<Skills> skills, Integer workExperience,
+                Date dateOfBirth, UUID imageKey, String phoneNumber, String profession, String about,
+                String company, String designation, Integer workExperience,
                 Integer investmentsDone) {
         this.id = id;
         this.uuid = uuid;
@@ -106,15 +94,12 @@ public class User{
         this.password = password;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.address = address;
         this.imageKey = imageKey;
         this.phoneNumber = phoneNumber;
         this.profession = profession;
         this.about = about;
         this.company = company;
         this.designation = designation;
-        this.interests = interests;
-        this.skills = skills;
         this.workExperience = workExperience;
         this.investmentsDone = investmentsDone;
     }
@@ -194,14 +179,6 @@ public class User{
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public UUID getImage() {
         return imageKey;
     }
@@ -248,22 +225,6 @@ public class User{
 
     public void setDesignation(String designation) {
         this.designation = designation;
-    }
-
-    public List<Interests> getInterests() {
-        return interests;
-    }
-
-    public void setInterests(List<Interests> interests) {
-        this.interests = interests;
-    }
-
-    public List<Skills> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<Skills> skills) {
-        this.skills = skills;
     }
 
     public Integer getWorkExperience() {
