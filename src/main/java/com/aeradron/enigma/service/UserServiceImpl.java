@@ -48,8 +48,6 @@ public class UserServiceImpl implements UserService {
             UserRequest userRequest = new UserRequest();
             userRequest.setAbout(user.getAbout());
             ObjectMapper mapper = new ObjectMapper();
-            String addressJson = mapper.writeValueAsString(user.getAddress());
-            userRequest.setAddress(mapper.readValue(addressJson, AddressRequest.class));
             userRequest.setDateOfBirth(user.getDateOfBirth());
             userRequest.setEmail(user.getEmail());
             userRequest.setFirstName(user.getFirstName());
@@ -59,20 +57,6 @@ public class UserServiceImpl implements UserService {
             userRequest.setProfession(user.getProfession());
             userRequest.setUserType(user.getUserType());
             userRequest.setWorkExperience(user.getWorkExperience());
-            if(UtilityService.checkListNotNullOrEmpty(user.getInterests())) {
-                List<String> interestsList = new ArrayList<>();
-                for (Interests interest : user.getInterests()) {
-                    interestsList.add(interest.getInterestName());
-                }
-                userRequest.setInterests(interestsList);
-            }
-            if(UtilityService.checkListNotNullOrEmpty(user.getSkills())) {
-                List<String> skillsList = new ArrayList<>();
-                for (Skills skill : user.getSkills()) {
-                    skillsList.add(skill.getSkillName());
-                }
-                userRequest.setSkills(skillsList);
-            }
             userRequest.setCompany(user.getCompany());
             userRequest.setDesignation(user.getDesignation());
             user.setUuid(user.getUuid());
@@ -94,7 +78,6 @@ public class UserServiceImpl implements UserService {
             user.setAbout(userRequest.getAbout());
             ObjectMapper mapper = new ObjectMapper();
             String addressJson = mapper.writeValueAsString(userRequest.getAddress());
-            user.setAddress(mapper.readValue(addressJson, Address.class));
             user.setDateOfBirth(userRequest.getDateOfBirth());
             user.setEmail(userRequest.getEmail());
             user.setFirstName(userRequest.getFirstName());
@@ -105,20 +88,6 @@ public class UserServiceImpl implements UserService {
             user.setProfession(userRequest.getProfession());
             user.setUserType(userRequest.getUserType());
             user.setWorkExperience(userRequest.getWorkExperience());
-            if (UtilityService.checkListNotNullOrEmpty(userRequest.getInterests())) {
-                List<Interests> interestsList = new ArrayList<>();
-                for (String interest : userRequest.getInterests()) {
-                    interestsList.add(new Interests(interest));
-                }
-                user.setInterests(interestsList);
-            }
-            if (UtilityService.checkListNotNullOrEmpty(userRequest.getSkills())) {
-                List<Skills> skillsList = new ArrayList<>();
-                for (String skill : userRequest.getSkills()) {
-                    skillsList.add(new Skills(skill));
-                }
-                user.setSkills(skillsList);
-            }
             user.setCompany(userRequest.getCompany());
             user.setImage(UUID.fromString(userRequest.getImageKey()));
             user.setDesignation(userRequest.getDesignation());
