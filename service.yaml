@@ -4,7 +4,8 @@ metadata:
   name: test-github-actions
 spec:
   ports:
-    - name: http
-      port: 8080
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
   selector:
     app: test-github-actions
