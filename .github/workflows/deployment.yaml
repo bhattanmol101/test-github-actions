@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-github-actions
+spec:
+  selector:
+    matchLabels:
+      app: test-github-actions
+  template:
+    metadata:
+      labels:
+        app: test-github-actions
+    spec:
+      containers:
+      - name: app
+        image: gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
