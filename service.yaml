@@ -3,10 +3,18 @@ kind: Service
 metadata:
   name: test-github-actions
 spec:
-  type: ClusterIP
+  clusterIP: 10.8.0.108
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 32707
+      port: 80
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: test-github-actions
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+      - ip: 104.197.111.35
