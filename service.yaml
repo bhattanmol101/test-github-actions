@@ -6,6 +6,7 @@ spec:
   selector:
     app: test-github-actions
   type: LoadBalancer
+  loadBalancerIP: enigma.aeradron.com
   ports:
   - port: 80
     targetPort: 8080
