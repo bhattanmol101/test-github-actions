@@ -6,7 +6,7 @@ spec:
   selector:
     app: test-github-actions
   type: LoadBalancer
-  loadBalancerIP: 35.238.81.164
+#  loadBalancerIP: 35.238.81.164
   ports:
   - port: 80
     targetPort: 8080
