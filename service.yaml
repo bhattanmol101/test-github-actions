@@ -5,10 +5,9 @@ metadata:
 spec:
   selector:
     app: test-github-actions
-  type: NodePort
+  type: LoadBalancer
   ports:
-  - protocol: TCP
-    port: 80
+  - port: 80
     targetPort: 8080
 #  clusterIP: 10.8.0.108
 #  externalTrafficPolicy: Cluster
