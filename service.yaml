@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: test-github-actions
 spec:
+  type: ClusterIP
+  selector:
+    app: test-github-actions
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  selector:
-    app: test-github-actions
