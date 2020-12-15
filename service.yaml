@@ -3,18 +3,25 @@ kind: Service
 metadata:
   name: test-github-actions
 spec:
-  clusterIP: 10.8.0.108
-  externalTrafficPolicy: Cluster
-  ports:
-    - nodePort: 32707
-      port: 80
-      protocol: TCP
-      targetPort: 8080
   selector:
     app: test-github-actions
-  sessionAffinity: None
-  type: LoadBalancer
-status:
-  loadBalancer:
-    ingress:
-      - ip: 104.197.111.35
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+#  clusterIP: 10.8.0.108
+#  externalTrafficPolicy: Cluster
+#  ports:
+#    - nodePort: 32707
+#      port: 80
+#      protocol: TCP
+#      targetPort: 8080
+#  selector:
+#    app: test-github-actions
+#  sessionAffinity: None
+#  type: LoadBalancer
+#status:
+#  loadBalancer:
+#    ingress:
+#      - ip: 104.197.111.35
